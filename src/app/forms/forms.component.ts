@@ -5,7 +5,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-// import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-forms',
@@ -27,6 +28,8 @@ export class FormsComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) {}
   public data: any;
+
+  toaster= inject(ToastrService)
 
   ngOnInit() {
     this.fetchDetails()    
@@ -50,14 +53,14 @@ export class FormsComponent implements OnInit {
     if (form.valid) {
       console.log('Form Data:', form.value);
       if (this.successful === 'true') {
-        // this.toastr.success('Form submitted successfully!', 'Success');
+        this.toaster.success('Form submitted successfully!', 'Success');
         this.router.navigate(['/success']);
       } else {
-        // this.toastr.error('Form submission failed. Please try again.', 'Error');
+        this.toaster.error('Form submission failed. Please try again.', 'Error');
         this.router.navigate(['/']);
       }
     } else {
-      // this.toastr.warning('Please fill out all required fields.', 'Warning');
+      this.toaster.warning('Please fill out all required fields.', 'Warning');
     }
   }
 }
