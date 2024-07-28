@@ -1,0 +1,56 @@
+<form class="ui form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="field">
+        <label for="first-name">First Name</label>
+        <input type="text" placeholder="John" required id="first-name" [(ngModel)]="firstName" name="firstName" />
+    </div>
+
+    <div class="field">
+        <label for="last-name">Last Name</label>
+        <input type="text" placeholder="Doe" required id="last-name" [(ngModel)]="lastName" name="lastName" />
+    </div>
+
+    <div class="field">
+        <label for="email">Email</label>
+        <input type="email" placeholder="abc@example.com" required id="email" [(ngModel)]="email" name="email" />
+    </div>
+
+    <div class="field">
+        <label for="phone">Phone No</label>
+        <input type="number" placeholder="0123456789" required id="phone" [(ngModel)]="phone" name="phone" />
+    </div>
+
+    <div class="two fields">
+        <div class="field">
+            <label>Country</label>
+            <select class="ui fluid search selection dropdown" required [(ngModel)]="country" name="country">
+                <option value="">None</option>
+                <option value="NG">Nigeria</option>
+                <option value="Nr">Niger</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Occupation</label>
+            <select class="ui fluid dropdown" [(ngModel)]="occupation" name="occupation">
+                <option value="Frontend">Frontend Developer</option>
+                <option value="Backend">Backend Developer</option>
+                <option value="Designer">Designer</option>
+                <option value="Devops">Devops Engineer</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="field">
+        <label>Successful</label>
+        <div class="ui radio checkbox">
+            <input type="radio" name="successful" value="true" [(ngModel)]="successful" required />
+            <label>True</label>
+        </div>
+        <div class="ui radio checkbox">
+            <input type="radio" name="successful" value="false" [(ngModel)]="successful" required />
+            <label>False</label>
+        </div>
+    </div>
+
+    <button class="ui button" type="submit">Submit</button>
+</form>
