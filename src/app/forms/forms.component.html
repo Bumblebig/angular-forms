@@ -1,4 +1,4 @@
-<form class="ui form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+<form class="ui form segment" (ngSubmit)="onSubmit(form)" #form="ngForm">
     <div class="ui form">
         <div class="field">
             <label for="firstName">First Name</label>
@@ -35,7 +35,8 @@
 
             <div class="field">
                 <label for="occupation">Occupation</label>
-                <select class="ui fluid dropdown" [(ngModel)]="occupation" name="occupation">
+                <select class="ui fluid dropdown" [(ngModel)]="occupation" name="occupation" required>
+                    <option value="">Select an Ocuupation</option>
                     <option value="Frontend">Frontend Developer</option>
                     <option value="Backend">Backend Developer</option>
                     <option value="Designer">Designer</option>
@@ -45,20 +46,19 @@
         </div>
 
         <div class="field">
-            <label for="successful">Successful</label>
-            <div>
-                <input type="radio" id="successfulTrue" [(ngModel)]="successful" name="successful" value="true"
-                    required>
-                <label for="successfulTrue">Yes</label>
+            <label>Successful</label>
+            <div class="ui radio checkbox">
+                <input type="radio" name="successful" value="true" [(ngModel)]="successful" required />
+                <label>True</label>
             </div>
-            <div>
-                <input type="radio" id="successfulFalse" [(ngModel)]="successful" name="successful" value="false"
-                    required>
-                <label for="successfulFalse">No</label>
+            <div class="ui radio checkbox">
+                <input type="radio" name="successful" value="false" [(ngModel)]="successful" required />
+                <label>False</label>
             </div>
         </div>
 
-        <button class="ui button" (click)="onSubmit(form)">Submit</button>
+
+        <button class="ui primary button" (click)="onSubmit(form)">Submit</button>
     </div>
 
 </form>
