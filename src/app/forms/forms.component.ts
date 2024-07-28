@@ -38,10 +38,12 @@ export class FormsComponent implements OnInit {
   fetchDetails() {
     this.http.get('https://restcountries.com/v3.1/all').subscribe(
       (resp: any) => {
-        this.countries = resp.map((country: any) => ({
-          name: country.name.common,
-          code: country.cca2
-        }));
+        this.countries = resp
+          .map((country: any) => ({
+            name: country.name.common,
+            code: country.cca2
+          }))
+          .sort((a: any, b: any) => a.name.localeCompare(b.name));
       },
       (error) => {
         console.error('Error fetching country data:', error);
