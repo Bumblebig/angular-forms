@@ -7,11 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { inject } from '@angular/core';
+import { NgxSemanticModule } from 'ngx-semantic';
 
 @Component({
   selector: 'app-forms',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, RouterModule, FormsModule, HttpClientModule, NgxSemanticModule],
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css']
 })
@@ -24,7 +25,13 @@ export class FormsComponent implements OnInit {
   occupation: string = '';
   successful: string = '';
   countries: any[] = [];
-  occupations: any[] = [];
+
+  occupations = [
+    { text: 'Frontend Developer', value: 'Frontend' },
+    { text: 'Backend Developer', value: 'Backend' },
+    { text: 'Designer', value: 'Designer' },
+    { text: 'Devops Engineer', value: 'Devops Engineer' },
+  ];
 
   constructor(private router: Router, private http: HttpClient) {}
   public data: any;
@@ -40,16 +47,18 @@ export class FormsComponent implements OnInit {
       (resp: any) => {
         this.countries = resp
           .map((country: any) => ({
-            name: country.name.common,
-            code: country.cca2
+            text: country.name.common,
+            value: country.cca2
           }))
-          .sort((a: any, b: any) => a.name.localeCompare(b.name));
+          .sort((a: any, b: any) => a.text.localeCompare(b.text));
       },
       (error) => {
         console.error('Error fetching country data:', error);
       }
     );
   }
+
+
 
   onSubmit(form: NgForm) {
     if (form.valid) {
